@@ -3,6 +3,9 @@ import pandas as pd
 import math
 import random
 
+  # initialization of pygame
+pygame.init()
+
 # Colors
 RED = 255, 0, 0
 GREEN = 0, 255, 0
@@ -10,20 +13,30 @@ BLUE = 0, 0, 255
 BLACK = 0, 0, 0
 WHITE = 255, 255, 255
 LIGHT_BLUE = 100, 100, 255
+BACK_GROUND_COLOR = 251,247,245
 
 # Screen config
-HEIGTH = 1000
-WIDTH = 700
-SCREEN = pygame.display.set_mode((HEIGTH, WIDTH))
+HEIGTH = 600
+WIDTH = 900
 
-# Game config and vars
-pygame.init()
-font = pygame.font.SysFont('Courier New', 50, bold=True)
-run = True
-
-# Game loop
-while run:
-    for event in pygame.event.get():  # event catcher. New way of doing this with pygame.quit
-        if event.type == pygame.QUIT:
-            pygame.quit()
+# gameloop
+def main():
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGTH))
+    pygame.display.set_caption('Sudoku')
+    SCREEN.fill((LIGHT_BLUE))
+    pygame.display.update()
+    font = pygame.font.SysFont('Courier New', 50, bold=True)
+    run = True
+    while run:
+        # event catcher. New way of doing this with pygame.quit
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                run = False
+                exit()
+            if event.type == pygame.KEYDOWN:  # will get the key pressed
+                key_pressed = pygame.key.name(event.key)
+                print(key_pressed)
     
+
+main()
