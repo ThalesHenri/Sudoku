@@ -20,6 +20,13 @@ HEIGTH = 600
 WIDTH = 900
 
 # gameloop
+def draw_grid(win):
+    lines = 10
+    for i in range(0, lines):
+        pygame.draw.line(win, (BLACK),(50 + 50 * i, 50), (50 + 50*i, 500), 2)
+        pygame.draw.line(win, (BLACK),(50, 50 * i + 50), (500, 50 + 50*i), 2)
+        pygame.display.update()
+
 def main():
     SCREEN = pygame.display.set_mode((WIDTH, HEIGTH))
     pygame.display.set_caption('Sudoku')
@@ -37,6 +44,8 @@ def main():
             if event.type == pygame.KEYDOWN:  # will get the key pressed
                 key_pressed = pygame.key.name(event.key)
                 print(key_pressed)
-    
+        draw_grid(SCREEN)
+
 
 main()
+
